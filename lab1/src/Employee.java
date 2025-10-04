@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Employee implements EmployeeInterface {
     private final String name;
     private final String surname;
@@ -16,29 +18,44 @@ public class Employee implements EmployeeInterface {
     public String getName() {
         return name;
     }
+
     @Override
     public String getSurname() {
         return surname;
     }
+
     @Override
     public String getNameAndSurname() {
         return String.format("%s %s", name, surname);
     }
+
     @Override
     public String getEmailAdress() {
         return emailAdress;
     }
+
     @Override
-    public String getCompanyName() {
-        return companyName;
-    }
+    public String getCompanyName() {return companyName; }
+
     @Override
-    public Number getSalary() {
+    public Integer getSalary() {
         return position.getSalary();
     }
+
     @Override
-    public String getPositionInCompany() {
-        return position.getJobTitle();
+    public String getPositionInCompany() { return position.getJobTitle(); }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Objects.equals(emailAdress, employee.emailAdress);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(emailAdress);
     }
     @Override
     public String toString() {
