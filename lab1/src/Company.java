@@ -1,27 +1,36 @@
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
 import Exceptions.EmailAlreadyInUseException;
 
 public class Company {
-    private Set<Employee> employees;
-
-    public Company() {
-        employees = new HashSet<Employee>();
+    private List<Employee> employees;
+    private final String companyName;
+    public Company(String companyName) {
+        this.companyName = companyName;
+        employees = new ArrayList<Employee>();
     }
-    public Set<Employee> getEmployees() {
+    public List<Employee> getEmployees() {
         return employees;
     }
+    public String getCompanyName() { return companyName; }
 
-    public void addEmployee(Employee newEmployee) {
-        if (!employees.add(newEmployee)) {
-            throw new EmailAlreadyInUseException("Employee with that email already exists");
+    public void addEmployee(String name, String surname, String emailAdress, Position position) {
+        for (Employee e : employees) {
+            if (e.getEmailAdress().equals(emailAdress)) {
+                throw new EmailAlreadyInUseException("Pracownik o podanym mailu już istnieje!");
+            }
         }
+        Employee newEmployee = new Employee(name, surname, emailAdress, this.companyName, position);
         employees.add(newEmployee);
     }
 
-    public Set<Employee> getEmployeesInCompany() {
+    public List<Employee> getEmployeesInCompany() {
         return employees;
+    }
+
+    @Override
+    public String toString() {
+        // TODO
+        return String.format("");
     }
 }

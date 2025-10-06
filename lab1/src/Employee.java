@@ -43,7 +43,7 @@ public class Employee implements EmployeeInterface {
     }
 
     @Override
-    public String getPositionInCompany() { return position.getJobTitle(); }
+    public String getPositionInCompany() { return position.name(); }
 
     @Override
     public boolean equals(Object o) {
@@ -59,6 +59,9 @@ public class Employee implements EmployeeInterface {
     }
     @Override
     public String toString() {
-        return String.format("Imie: %s, Nazwisko: %s Pozycja w firmie: %s", getName(), getSurname(), getPositionInCompany());
+        return String.format(
+                "Imię: %s, Nazwisko: %s, Email: %s, Firma: %s, Stanowisko: %s, Wynagrodzenie: %d",
+                name, surname, emailAdress, companyName, position.name(), getSalary()
+        );
     }
 }

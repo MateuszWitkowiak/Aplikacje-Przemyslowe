@@ -7,11 +7,16 @@ public class FinancialStatistics {
     public FinancialStatistics(List<Employee> employeeList) {
         this.employees = employeeList;
     }
-    public Integer getAverageSalary() {
-        return employees.stream().mapToInt(Employee::getSalary).sum() / employees.size();
+    public Double getAverageSalary() {
+        return employees.isEmpty() ? 0.0 : employees.stream().mapToInt(Employee::getSalary).average().orElse(0.0);
     }
 
     public Optional<Employee> getHighestPaidEmployee() {
         return employees.stream().max(Comparator.comparing(Employee::getSalary));
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Highest paid Employee: %s Average Salary: %s", getHighestPaidEmployee(), getAverageSalary());
     }
 }
