@@ -15,12 +15,11 @@ public class Company {
     public String getCompanyName() { return companyName; }
 
     public void addEmployee(String name, String surname, String emailAdress, Position position) {
-        if (employees.stream().anyMatch(e -> e.getEmailAdress().equals(emailAdress))) {
+        Employee tempEmployee = new Employee(name, surname, emailAdress, this.companyName, position);
+        if (employees.contains(tempEmployee)) {
             throw new EmailAlreadyInUseException("Pracownik o podanym mailu już istnieje!");
         }
-
-        Employee newEmployee = new Employee(name, surname, emailAdress, this.companyName, position);
-        employees.add(newEmployee);
+        employees.add(tempEmployee);
     }
 
     @Override

@@ -27,22 +27,22 @@ public class Main {
 
         System.out.println("\n==== Test Employee ====");
         Employee employee = new Employee("Mateusz", "Witkowiak", "mateusz@gmail.com", "FirmaJakas", Position.MANAGER);
-        System.out.println(employee.toString());
+        System.out.println(employee);
 
         System.out.println("\n==== Test danych finansowych ====");
         FinancialStatistics financialStatistics = new FinancialStatistics(employees);
-        System.out.println(financialStatistics.toString());
+        System.out.println(financialStatistics);
 
         System.out.println("\n==== Testy operacji analitycznych ====");
         AnalyticOperations analyticOperations = new AnalyticOperations(employees);
-        System.out.println(analyticOperations.toString());
+        System.out.println(analyticOperations);
 
         System.out.println("\n==== Test klasy Company ====");
         Company company = new Company("NowaFirma");
         company.addEmployee("Mateusz", "Witkowiak", "mateusz@gmail.com", Position.PREZES);
+        System.out.println(company);
         System.out.println("Lista pracowników po dodaniu pracownika:" + company.getEmployees());
         System.out.println("Tu poleci walidacja na to że w firmie już jest pracownik o takim mailu:");
         company.addEmployee("Mateusz", "Witkowiak", "mateusz@gmail.com", Position.PREZES);
-        System.out.println(company.toString());
     }
 }
