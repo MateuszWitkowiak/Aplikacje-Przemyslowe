@@ -15,22 +15,20 @@ public class Company {
     public String getCompanyName() { return companyName; }
 
     public void addEmployee(String name, String surname, String emailAdress, Position position) {
-        for (Employee e : employees) {
-            if (e.getEmailAdress().equals(emailAdress)) {
-                throw new EmailAlreadyInUseException("Pracownik o podanym mailu już istnieje!");
-            }
+        if (employees.stream().anyMatch(e -> e.getEmailAdress().equals(emailAdress))) {
+            throw new EmailAlreadyInUseException("Pracownik o podanym mailu już istnieje!");
         }
+
         Employee newEmployee = new Employee(name, surname, emailAdress, this.companyName, position);
         employees.add(newEmployee);
     }
 
-    public List<Employee> getEmployeesInCompany() {
-        return employees;
-    }
-
     @Override
     public String toString() {
-        // TODO
-        return String.format("");
+        return String.format(
+                "Company name: %s\nEmployees: %s",
+                companyName,
+                employees
+        );
     }
 }
